@@ -1,0 +1,180 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API created to manage tools to remember required by Bossabox.",
+    "version": "1.0.0",
+    "title": "VUTTR - Very useful tools to remember",
+    "contact": {
+      "email": "guilherme.hchiarelli@gmail.com"
+    }
+  },
+  "host": "localhost:3000",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/tool": {
+      "post": {
+        "tags": [
+          "tool"
+        ],
+        "summary": "Add a new tool",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Tool object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Tool"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tool created",
+            "schema": {
+              "$ref": "#/definitions/Tool"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "tool"
+        ],
+        "summary": "Get all tools available",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Filter tool by tag",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Tool"
+            }
+          }
+        }
+      }
+    },
+    "/tool/{toolId}": {
+      "get": {
+        "tags": [
+          "tool"
+        ],
+        "summary": "Get an specific tool",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "toolId",
+            "in": "path",
+            "description": "ID of tool to get",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Tool"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "tool"
+        ],
+        "summary": "Delete an specific tool",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "toolId",
+            "in": "path",
+            "description": "ID of tool to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Tool": {
+      "type": "object",
+      "required": [
+        "title",
+        "link",
+        "tags",
+        "description"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "6075bf96fbf36254e00ae988"
+        },
+        "title": {
+          "type": "string",
+          "example": "Notion"
+        },
+        "link": {
+          "type": "string",
+          "example": "https://notion.so"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "node"
+          }
+        },
+        "description": {
+          "type": "string",
+          "example": "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized."
+        }
+      }
+    }
+  }
+}
