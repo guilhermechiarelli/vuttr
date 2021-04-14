@@ -19,3 +19,6 @@ API created using NodeJS + Express + Mongoose + MongoDB.
 - Run the command "npm install" to install all dependencies;
 - Run the command "npm run dev" to start the project;
 - It will use the port 3000.
+
+## Documentation
+Get the vuttr-swagger.json file in the root of this project and import it in https://editor.swagger.io/
