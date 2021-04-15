@@ -27,6 +27,14 @@
         ],
         "parameters": [
           {
+            "in": "header",
+            "name": "Authorization",
+            "description": "User's JWT logged in",
+            "required": true,
+            "type": "string",
+            "format": "jwt"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "Tool object that needs to be added",
@@ -122,6 +130,14 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "User's JWT logged in",
+            "required": true,
+            "type": "string",
+            "format": "jwt"
+          },
           {
             "name": "toolId",
             "in": "path",
