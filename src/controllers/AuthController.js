@@ -23,13 +23,20 @@ class AuthController {
       return res.status(400).json({ message: 'Invalid credentials.' });
     }
 
-    delete user.password;
-
     const secret = process.env.JWT_SECRET || 'default';
 
     const token = jwt.sign({ id: user._id }, secret, { expiresIn: '8h' });
 
-    return res.status(200).json({ user, token });
+    return res.status(200).json({
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+      token,
+    });
   }
 }
 
